@@ -298,27 +298,24 @@ actor {
     ** Challenge 10
     **
     *********************************************************************/
-    // not fully working yet
-    let array_sort : [var Nat] = [var 2,5,3,8,4,1,9];
-
     public func bubble_sort() : async [Nat] {
-        var i : Nat = 0;
-        var j : Nat = 0;
-        var size : Nat = array_sort.size();
+        var array_sort : [var Nat] = [var 2,5,3,8,4,1,9];
+        let size : Nat = array_sort.size() - 1;
+        var swap : Bool = true;
 
-        label outside while(i < size) {
-            label inside while(j < (size - 1)) {
-                if(j+1 < array_sort.size()) {
-                    if(array_sort[j] > array_sort[j+1]) {
-                        let bucket : Nat = array_sort[j];
-                        array_sort[j] := array_sort[j+1];
-                        array_sort[j+1] := bucket;
-                        break inside;
-                    };
-                    j += 1;
+        while(swap) {
+            swap := false;
+            var i : Nat = 0;
+            while(i < size) {
+                if(array_sort[i] > array_sort[i + 1]) {
+                    let temp : Nat = array_sort[i];
+                    array_sort[i] := array_sort[i + 1];
+                    array_sort[i + 1] := temp;
+                    swap := true;
                 };
+                
+                i += 1;
             };
-            i += 1;
         };
 
         return Array.freeze(array_sort);
