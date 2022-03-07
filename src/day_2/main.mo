@@ -1,3 +1,4 @@
+import Array "mo:base/Array";
 import Nat "mo:base/Nat";
 import Nat8 "mo:base/Nat8";
 import Nat32 "mo:base/Nat32";
@@ -297,9 +298,29 @@ actor {
     ** Challenge 10
     **
     *********************************************************************/
-    let array_sort : [var Nat] = [var 5,1,4,2,8,9];
+    // not fully working yet
+    let array_sort : [var Nat] = [var 2,5,3,8,4,1,9];
 
     public func bubble_sort() : async [Nat] {
-        return [0];
+        var i : Nat = 0;
+        var j : Nat = 0;
+        var size : Nat = array_sort.size();
+
+        label outside while(i < size) {
+            label inside while(j < (size - 1)) {
+                if(j+1 < array_sort.size()) {
+                    if(array_sort[j] > array_sort[j+1]) {
+                        let bucket : Nat = array_sort[j];
+                        array_sort[j] := array_sort[j+1];
+                        array_sort[j+1] := bucket;
+                        break inside;
+                    };
+                    j += 1;
+                };
+            };
+            i += 1;
+        };
+
+        return Array.freeze(array_sort);
     };
 };
