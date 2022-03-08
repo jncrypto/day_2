@@ -32,20 +32,7 @@ actor {
     **
     *********************************************************************/
     public func max_number_with_n_bits(n : Nat) : async Nat {
-        let n8 : Nat = (2 ** 8);
-        let n16 : Nat = (2 ** 16);
-        let n32 : Nat = (2 ** 32);
-        let n64 : Nat = (2 ** 64);
-        
-        if(n < n8) {
-            return n8;
-        } else if(n < n16) {
-            return n16;
-        } else if(n < n32) {
-            return n32;
-        } else {
-            return n64;
-        }
+        return ((2 ** n) - 1);
     };
     
     /*********************************************************************
